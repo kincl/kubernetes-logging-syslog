@@ -1,0 +1,26 @@
+kind: DaemonSet
+apiVersion: extensions/v1beta1
+metadata:
+  name: logging-rsyslog
+spec:
+  template:
+    metadata:
+      labels:
+        name: logging-rsyslog
+    spec:
+      containers:
+      - name: rsyslog
+        image: "kincl/rsyslog:latest"
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: host-container-logs-k8s
+          mountPath: /var/log/containers
+        - name: host-container-logs-docker
+          mountPath: /mnt/sda1/var/lib/docker/containers
+      volumes:
+      - name: host-container-logs-k8s
+        hostPath: 
+          path: /var/log/containers
+      - name: host-container-logs-docker
+        hostPath: 
+          path: /mnt/sda1/var/lib/docker/containers
