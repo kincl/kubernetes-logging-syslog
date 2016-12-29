@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
       - name: rsyslog
-        image: "kincl/rsyslog:latest"
+        image: "kincl/kubernetes-logging-syslog:latest"
         imagePullPolicy: Always
         volumeMounts:
         - name: host-container-logs-k8s
@@ -23,4 +23,4 @@ spec:
           path: /var/log/containers
       - name: host-container-logs-docker
         hostPath: 
-          path: /mnt/sda1/var/lib/docker/containers
+          path: /var/lib/docker/containers
