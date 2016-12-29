@@ -16,7 +16,7 @@ spec:
         - name: host-container-logs-k8s
           mountPath: /var/log/containers
         - name: host-container-logs-docker
-          mountPath: /mnt/sda1/var/lib/docker/containers
+          mountPath: /var/lib/docker/containers
       volumes:
       - name: host-container-logs-k8s
         hostPath: 
