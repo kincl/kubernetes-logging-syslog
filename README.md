@@ -1,9 +1,9 @@
-= Kubernetes Container Log Syslog Forwarder
+# Kubernetes Container Log Syslog Forwarder
 
 This container is designed to run as a DaemonSet and forwards pod logs to a syslog
 listener for all pods running on a node. Log forwarding is implemented with [RSYSLOG](http://www.rsyslog.com/)
 
-== Configuration Options
+## Configuration Options
 Configuration can be done with environment variables:
 
 * **RSYSLOG_TARGET** - Remote syslog listener
