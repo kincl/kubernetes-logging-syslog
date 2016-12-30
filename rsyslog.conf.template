@@ -1,4 +1,5 @@
-global(workDirectory="/tmp")
+global(workDirectory="/var/log/containers")
+
 module(load="imfile" PollingInterval="10")
 input(type="imfile"
       file="/var/log/containers/*.log"
@@ -17,5 +18,7 @@ template(name="ContainerLogs" type="list") {
     constant(value="\n")
 }
 
-action(type="omfile" dirCreateMode="0700" fileCreateMode="0644"
-       file="/var/log/messages" template="ContainerLogs")
+action(type="omfwd" Target="${RSYSLOG_TARGET}" Port="${RSYSLOG_PORT}" Protocol="${RSYSLOG_PROTOCOL}")
+
+#action(type="omfile" dirCreateMode="0700" fileCreateMode="0644"
+#       file="/var/log/messages" template="ContainerLogs")
