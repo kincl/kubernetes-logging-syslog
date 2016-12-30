@@ -14,9 +14,9 @@ spec:
         imagePullPolicy: Always
         env:
         - name: RSYSLOG_TARGET
-          value: 127.0.0.1
+          value: "127.0.0.1"
         - name: RSYSLOG_PORT
-          value: 514
+          value: "514"
         - name: RSYSLOG_PROTOCOL
           value: udp
         volumeMounts:
