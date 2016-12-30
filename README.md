@@ -11,3 +11,7 @@ Configuration can be done with environment variables:
 * **RSYSLOG_PORT** - Remote syslog listener port
 * **RSYSLOG_PROTOCOL** - Remote syslog listener protocol (udp/tcp)
 
+## Example DaemonSet
+DaemonSet example requires a privileged SCC if using k8s v1.5+ or OpenShift and
+probably needs rsyslog already installed in order to use /var/lib/rsyslog on the
+host as the place for the file state directory
