@@ -3,7 +3,7 @@ global(workDirectory="/var/log/containers")
 module(load="imfile" PollingInterval="10")
 input(type="imfile"
       file="/var/log/containers/*.log"
-      tag="container")
+      tag="container-logs")
 
 template(name="ContainerLogs" type="list") {
     property(name="timestamp" dateFormat="rfc3339")
@@ -13,8 +13,8 @@ template(name="ContainerLogs" type="list") {
              regex.expression="([a-zA-Z0-9_-]*)-"
              regex.submatch="1")
     constant(value=" ")
-    property(name="msg" spifno1stsp="on" )
-    property(name="msg" droplastlf="on" )
+    property(name="msg" spifno1stsp="on")
+    property(name="msg" droplastlf="on")
     constant(value="\n")
 }
 
