@@ -27,7 +27,7 @@ spec:
         - name: rsyslog-state-dir
           mountPath: /var/lib/rsyslog
         - name: host-timezone
-          mountPath: /etc/timezone
+          mountPath: /etc/localtime
       volumes:
       - name: host-container-logs-k8s
         hostPath:
@@ -40,4 +40,4 @@ spec:
           path: /var/lib/rsyslog
       - name: host-timezone
         hostPath:
-          path: /etc/timezone
+          path: /etc/localtime
