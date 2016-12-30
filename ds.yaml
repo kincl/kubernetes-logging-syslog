@@ -1,12 +1,12 @@
 kind: DaemonSet
 apiVersion: extensions/v1beta1
 metadata:
-  name: logging-rsyslog
+  name: logging-syslog
 spec:
   template:
     metadata:
       labels:
-        name: logging-rsyslog
+        name: logging-syslog
     spec:
       containers:
       - name: rsyslog
