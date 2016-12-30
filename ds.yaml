@@ -26,6 +26,8 @@ spec:
           mountPath: /var/lib/docker/containers
         - name: rsyslog-state-dir
           mountPath: /var/lib/rsyslog
+        - name: host-timezone
+          mountPath: /etc/timezone
       volumes:
       - name: host-container-logs-k8s
         hostPath:
@@ -36,3 +38,6 @@ spec:
       - name: rsyslog-state-dir
         hostPath:
           path: /var/lib/rsyslog
+      - name: host-timezone
+        hostPath:
+          path: /etc/timezone
