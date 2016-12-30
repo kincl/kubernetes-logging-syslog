@@ -24,6 +24,8 @@ spec:
           mountPath: /var/log/containers
         - name: host-container-logs-docker
           mountPath: /var/lib/docker/containers
+        - name: rsyslog-state-dir
+          mountPath: /var/lib/rsyslog
       volumes:
       - name: host-container-logs-k8s
         hostPath:
@@ -31,3 +33,6 @@ spec:
       - name: host-container-logs-docker
         hostPath:
           path: /var/lib/docker/containers
+      - name: rsyslog-state-dir
+        hostPath:
+          path: /var/lib/rsyslog

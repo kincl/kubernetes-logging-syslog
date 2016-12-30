@@ -1,4 +1,4 @@
-global(workDirectory="/var/log/containers")
+global(workDirectory="/var/lib/rsyslog")
 
 module(load="imfile" PollingInterval="10")
 input(type="imfile"
