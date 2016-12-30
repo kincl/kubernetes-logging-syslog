@@ -6,4 +6,6 @@ RUN yum -y install rsyslog gettext && yum clean all
 COPY rsyslog.conf.template /etc/rsyslog.conf.template
 COPY start.sh /start.sh
 
+RUN chmod +x /start.sh
+
 CMD /start.sh
