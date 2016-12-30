@@ -18,7 +18,11 @@ template(name="ContainerLogs" type="list") {
     constant(value="\n")
 }
 
-action(type="omfwd" Target="${RSYSLOG_TARGET}" Port="${RSYSLOG_PORT}" Protocol="${RSYSLOG_PROTOCOL}")
+action(type="omfwd"
+       template="ContainerLogs"
+       Target="${RSYSLOG_TARGET}"
+       Port="${RSYSLOG_PORT}"
+       Protocol="${RSYSLOG_PROTOCOL}")
 
 #action(type="omfile" dirCreateMode="0700" fileCreateMode="0644"
 #       file="/var/log/messages" template="ContainerLogs")
