@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: rsyslog
+  name: rsyslog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rsyslog
+  template:
+    metadata:
+      labels:
+        app: rsyslog
+    spec:
+      containers:
+      - image: voxxit/rsyslog
+        name: rsyslog
+        ports:
+          - containerPort: 514
+            protocol: UDP
+            name: syslog-udp
+          - containerPort: 514
+            protocol: TCP
+            name: syslog-tcp
+        env:
+          - name: TZ
+            value: America/New_York
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rsyslog
+  labels:
+    app: rsyslog
+spec:
+  ports:
+    - protocol: UDP
+      port: 514
+      targetPort: 514
+    - protocol: TCP
+      port: 514
+      targetPort: 514
