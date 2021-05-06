@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: syslog-agent
-          image: k3d-k3s-default-registry:36387/syslog-agent
+          image: k3d-local:5000/syslog-agent
           envFrom:
             - configMapRef:
                 name: syslog-agent-config
