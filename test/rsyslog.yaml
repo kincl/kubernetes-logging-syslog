@@ -47,4 +47,13 @@ spec:
         env:
           - name: TZ
             value: America/New_York
+        livenessProbe:
+          tcpSocket:
+            port: 514
+        readinessProbe:
+          exec:
+            command:
+              - test
+              - -s
+              - /var/log/messages
 
