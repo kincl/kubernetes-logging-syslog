@@ -23,9 +23,11 @@ spec:
             - mountPath: /var/log
               name: logs
               readOnly: true
-            - mountPath: /var/lib/syslog
+            - mountPath: /var/lib/rsyslog
               name: work
-       volumes:
+          securityContext:
+            readOnlyRootFilesystem: true
+      volumes:
         - name: logs
           hostPath:
             path: /var/log
