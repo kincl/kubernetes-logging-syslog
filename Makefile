@@ -22,7 +22,12 @@ k3d-down cluster-down down:
 	rm -f .k3d-*
 
 ready:
-	@while kubectl get pods -A | grep -q ContainerCreating; do sleep 2; done || true
+	@echo -n "Waiting for pod count..."
+	@while [ "$$(kubectl get pods -A | wc -l)" -lt 4 ] ; do sleep 2; echo -n .; done || true
+	@echo "DONE"
+	@echo -n "Waiting for pods ready..."
+	@while kubectl get pods -A | grep -q -E 'Pending|ContainerCreating'; do sleep 2; echo -n . ; done || true
+	@echo "READY"
 
 .k3d: .k3d-cluster .k3d-kube-state-metrics
 
