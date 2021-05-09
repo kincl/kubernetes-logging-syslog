@@ -2,10 +2,13 @@ IMAGE=localhost:5000/syslog-agent
 DEFAULT_METRICS=kube-state-metrics
 LOCAL_PORT=8081
 
-build:
-	docker build -t $(IMAGE) .
+build: .k3d-image
 
-push: .k3d-registry
+.k3d-image: Dockerfile start.sh rsyslog.conf.template
+	docker build -t $(IMAGE) .
+	@touch $@
+
+push: .k3d-registry .k3d-image
 	docker push $(IMAGE)
 
 test: up k8s ready
@@ -23,7 +26,7 @@ k3d-down cluster-down down:
 
 ready:
 	@echo -n "Waiting for pod count..."
-	@while [ "$$(kubectl get pods -A | wc -l)" -lt 4 ] ; do sleep 2; echo -n .; done || true
+	@while [ "$$(kubectl get pods -A | wc -l 2>/dev/null)" -lt 4 ] ; do sleep 2; echo -n .; done || true
 	@echo "DONE"
 	@echo -n "Waiting for pods ready..."
 	@while kubectl get pods -A | grep -q -E 'Pending|ContainerCreating'; do sleep 2; echo -n . ; done || true
