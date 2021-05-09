@@ -3,15 +3,15 @@ kind: DaemonSet
 metadata:
   name: syslog-agent
   labels:
-    app: syslog
+    app: syslog-agent
 spec:
   selector:
     matchLabels:
-      app: syslog
+      app: syslog-agent
   template:
     metadata:
       labels:
-       app: syslog
+       app: syslog-agent
     spec:
       containers:
         - name: syslog-agent

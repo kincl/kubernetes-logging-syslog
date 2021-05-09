@@ -1,7 +1,26 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rsyslog
+  labels:
+    app: rsyslog
+spec:
+  selector:
+    app: rsyslog
+  ports:
+    - protocol: UDP
+      port: 514
+      targetPort: 514
+      name: syslog-udp
+    - protocol: TCP
+      port: 514
+      targetPort: 514
+      name: syslog-tcp
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: rsyslog
   name: rsyslog
@@ -28,20 +47,4 @@ spec:
         env:
           - name: TZ
             value: America/New_York
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: rsyslog
-  labels:
-    app: rsyslog
-spec:
-  ports:
-    - protocol: UDP
-      port: 514
-      targetPort: 514
-      name: syslog-udp
-    - protocol: TCP
-      port: 514
-      targetPort: 514
-      name: syslog-tcp
+
