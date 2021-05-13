@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: syslog-agent-config
+data:
+  RSYSLOG_PORT: "514"
+  RSYSLOG_PROTOCOL: UDP
+  RSYSLOG_TARGET: rsyslog

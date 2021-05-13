@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: syslog-agent
+  labels:
+    app: syslog-agent
+spec:
+  selector:
+    matchLabels:
+      app: syslog-agent
+  template:
+    metadata:
+      labels:
+       app: syslog-agent
+    spec:
+      containers:
+        - name: syslog-agent
+          image: k3d-local:5000/syslog-agent
+          envFrom:
+            - configMapRef:
+                name: syslog-agent-config
+          volumeMounts:
+            - mountPath: /var/log
+              name: logs
+              readOnly: true
+            - mountPath: /var/lib/rsyslog
+              name: work
+          securityContext:
+            readOnlyRootFilesystem: true
+      volumes:
+        - name: logs
+          hostPath:
+            path: /var/log
+        - name: work
+          emptyDir: {}
+
+
+
+
